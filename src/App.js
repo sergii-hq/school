@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import AuthContainer from "./components/AuthContainer";
+import RegistrationContainer from "./components/RegistrationContainer";
+import {createStore} from 'redux';
+import rootReducer from "./store/reducers";
+import {Provider} from 'react-redux'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const store = createStore(rootReducer);
+
+class App extends React.Component {
+    render() {
+        return (
+            <Provider store={store}>
+                <div className="wrapper">
+                    <h1>Complex State</h1>
+                    <div className="forms">
+                        <AuthContainer/>
+                        <RegistrationContainer/>
+                    </div>
+                </div>
+            </Provider>
+        );
+    }
 }
 
 export default App;
